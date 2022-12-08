@@ -6,8 +6,7 @@ class Student:
         self.finished_courses = []
         self.courses_in_progress = []
         self.grades = {}
-        self.av_grade = self.calc_average
-
+        
     def rate_le(self, lecturer, course, grade):
         if isinstance(lecturer, Lecturer) and course in lecturer.courses_attached and course in self.courses_in_progress:
             if course in lecturer.grades:
@@ -123,17 +122,20 @@ student_1.rate_le(lecturer_2, 'Git', 9)
 student_2.rate_le(lecturer_1, 'Python', 10)
 student_2.rate_le(lecturer_2, 'Git', 10)
 
-student_list = [student_1, student_2]
-lecturer_list = [lecturer_1, lecturer_2]
+list_1 = [student_1, student_2]
+list_2 = [lecturer_1, lecturer_2]
 
-# sum = 0
-# lengh = 0
-# def av_grade_st(student_list, course):
-#     for st in student_list:
-#         if st.grades == [course]:
-#             sum += sum(st.grades[course])
-#             len += len(st.grades[course])
-#     return f'Средний бал студентов по курсу {course}: {sum / len}' 
+def av_grade_st(list, course):
+    su = 0
+    length = 0
+    for st in list:
+        if st.grades == course:
+            su += sum(st.grades[course])
+            length += len(st.grades[course])
+        else:
+            return 'Нет такого курса'    
+    return f'Средний бал за курс {course}: {su / length}'
+    
     
                   
 
@@ -148,4 +150,10 @@ print(student_1)
 print(student_2)
 print()
 print(student_1 < student_2)
-print(lecturer_1 < lecturer_2)
+print(lecturer_2 < lecturer_1)
+print()
+print(av_grade_st(list_1, 'Python'))
+
+print(student_1.grades)
+
+
