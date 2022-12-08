@@ -132,8 +132,6 @@ def av_grade_st(course, list=list_1):
         if course in st.grades:
             su += sum(st.grades[course])
             length += len(st.grades[course])
-        else:
-            return 'По этому курсу оценок нет'    
     return f'Средний балл студентов за курс {course}: {round(su / length, 2)}'
     
 def av_grade_lec(course, list=list_2):
@@ -143,8 +141,6 @@ def av_grade_lec(course, list=list_2):
         if course in lec.grades:
             su += sum(lec.grades[course])
             length += len(lec.grades[course])
-        else:
-            return 'По этому курсу оценок нет'    
     return f'Средний балл лекторов за курс {course}: {round(su / length, 2)}'    
                   
 
@@ -165,6 +161,6 @@ print(av_grade_st('Python'))
 print()
 print(av_grade_lec('Python'))
 print()
-print(lecturer_1.grades)
+
 
 
