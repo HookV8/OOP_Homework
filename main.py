@@ -101,7 +101,7 @@ reviewer_2.courses_attached += ['Python']
 reviewer_2.courses_attached += ['Git']
 
 # Проверка ДЗ проверяющими 
-reviewer_1.rate_hw(student_1, 'Python', 8)
+reviewer_1.rate_hw(student_1, 'Python', 9)
 reviewer_1.rate_hw(student_2, 'Python', 10)
 reviewer_2.rate_hw(student_1, 'Python', 8)
 reviewer_2.rate_hw(student_2, 'Python', 10)
@@ -116,27 +116,36 @@ reviewer_1.rate_hw(student_2, 'Git', 10)
 
 # Оцека лекторов студентами
 student_1.rate_le(lecturer_1, 'Python', 9)
-student_1.rate_le(lecturer_2, 'Git', 10)
+student_1.rate_le(lecturer_2, 'Git', 9)
 student_1.rate_le(lecturer_1, 'Python', 8)
 student_1.rate_le(lecturer_2, 'Git', 9)
-student_2.rate_le(lecturer_1, 'Python', 10)
+student_2.rate_le(lecturer_1, 'Python', 9)
 student_2.rate_le(lecturer_2, 'Git', 10)
 
 list_1 = [student_1, student_2]
 list_2 = [lecturer_1, lecturer_2]
 
-def av_grade_st(list, course):
+def av_grade_st(course, list=list_1):
     su = 0
     length = 0
     for st in list:
-        if st.grades == course:
+        if course in st.grades:
             su += sum(st.grades[course])
             length += len(st.grades[course])
         else:
-            return 'Нет такого курса'    
-    return f'Средний бал за курс {course}: {su / length}'
+            return 'По этому курсу оценок нет'    
+    return f'Средний балл студентов за курс {course}: {round(su / length, 2)}'
     
-    
+def av_grade_lec(course, list=list_2):
+    su = 0
+    length = 0
+    for lec in list:
+        if course in lec.grades:
+            su += sum(lec.grades[course])
+            length += len(lec.grades[course])
+        else:
+            return 'По этому курсу оценок нет'    
+    return f'Средний балл лекторов за курс {course}: {round(su / length, 2)}'    
                   
 
 print()
@@ -152,8 +161,10 @@ print()
 print(student_1 < student_2)
 print(lecturer_2 < lecturer_1)
 print()
-print(av_grade_st(list_1, 'Python'))
-
-print(student_1.grades)
+print(av_grade_st('Python'))
+print()
+print(av_grade_lec('Python'))
+print()
+print(lecturer_1.grades)
 
 
